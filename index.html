@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <title>Sudoku JS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8" />
+<head>
+    <title>Sudoku</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
 
-  <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css" />
-  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-  <script type="text/javascript" src="jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css"/>
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile-1.4.5.min.js"></script>
 
-  <script type="text/javascript" src="sudoku.js"></script>
+    <script type="text/javascript" src="sudoku.js"></script>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="ionic/ionicons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ionic/ionicons.min.css">
 
-  </head>
+</head>
 
-  <body onload="init();" onclick="elsewhere();">
-    <!-- Start of the page -->
-    <div data-role="page" id="home">
+<body onload="init();" onclick="elsewhere();">
+<!-- Start of the page -->
+<div data-role="page" id="home">
 
-      <!--
-      <div data-role="header">
+    <!--
+    <div data-role="header">
+      <h1>Sudoku</h1>
+    </div>
+      -->
+
+    <div role="main" class="ui-content">
+
         <h1>Sudoku</h1>
-      </div>
-        -->
-
-      <div role="main" class="ui-content">
-
-        <h1>Sudoku JS</h1>
 
         <div class="table">
-        <table id="grid"></table>
+            <table id="grid"></table>
         </div>
 
         <div class="table panel">
-        <table id="digits">
-            <tr>
-                <td id="digit-0" class="digit"></td>
-                <td id="digit-1" class="digit">1</td>
-                <td id="digit-2" class="digit">2</td>
-                <td id="digit-3" class="digit">3</td>
-                <td id="digit-4" class="digit">4</td>
-            <tr>
-                <td id="digit-5" class="digit">5</td>
-                <td id="digit-6" class="digit">6</td>
-                <td id="digit-7" class="digit">7</td>
-                <td id="digit-8" class="digit">8</td>
-                <td id="digit-9" class="digit">9</td>
-            </tr>
+            <table id="digits">
+                <tr>
+                    <td id="digit-0" class="digit"></td>
+                    <td id="digit-1" class="digit">1</td>
+                    <td id="digit-2" class="digit">2</td>
+                    <td id="digit-3" class="digit">3</td>
+                    <td id="digit-4" class="digit">4</td>
+                <tr>
+                    <td id="digit-5" class="digit">5</td>
+                    <td id="digit-6" class="digit">6</td>
+                    <td id="digit-7" class="digit">7</td>
+                    <td id="digit-8" class="digit">8</td>
+                    <td id="digit-9" class="digit">9</td>
+                </tr>
 
-        </table>
+            </table>
         </div>
 
         <div class="panel">
@@ -68,63 +68,69 @@
             </ul>
         </div>
 
-      </div>
-
-      <!--
-      <div data-role="footer">
-        <h4>@baruchel</h4>
-        <tt>written by th. baruchel</tt>
-      </div>
-      -->
-
-      <div data-role="popup" id ="waiting" class="ui-content"
-          data-theme="b" data-overlay-theme="b">
-        <p>generating a new grid…</p>
-      </div>
-
-      <div data-role="popup" id ="newGrid" class="ui-content"
-          data-theme="b" data-overlay-theme="b">
-          <h2>Select level:</h2>
-          <ul>
-              <li onclick="newRandomGrid(72);">Easy</li>
-              <li onclick="newRandomGrid(96);">Medium</li>
-              <li onclick="newRandomGrid(128);">Difficult</li>
-              <li onclick="newRandomGrid(192);">Insane</li>
-          </ul>
-      </div>
-
-      <div data-role="popup" id ="restart" class="ui-content"
-          data-theme="b" data-overlay-theme="b">
-          <h2>Restart game?</h2>
-          <ul>
-              <li onclick='restart();$( "#restart" ).popup( "close" );'>yes</li>
-              <li id="cancel" onclick='$( "#restart" ).popup( "close" );'>cancel</li>
-          </ul>
-      </div>
-
-      <div data-role="popup" id ="help" class="ui-content"
-          data-theme="b" data-overlay-theme="b">
-          <h2>Help</h2>
-          <p>Main symbols</p>
-          <ul>
-                <li class="ion-fork-repo" data-pack="default"></li>
-                <li class="help">make an hypothesis</li>
-                <li class="ion-pull-request" data-pack="default"></li>
-                <li class="help">validate hypothesis</li>
-                <li class="ion-android-close" data-pack="android"></li>
-                <li class="help">rule out hypothesis</li>
-                <li class="ion-android-refresh" data-pack="android"></li>
-                <li class="help">restart same grid</li>
-                <li class="ion-code-working" data-pack="default"></li>
-                <li class="help">generate a new grid</li>
-          </ul>
-          <p>Additional tools</p>
-          <h3 id="check" class="helpButton" onclick='check();$( "#help" ).popup( "close" );'>Show wrong answers</h3>
-          <h3 id="solve" class="helpButton" onclick='solve();$( "#help" ).popup( "close" );'>Solve current grid</h3>
-      </div>
-
     </div>
-    <!-- End of the page -->
 
-  </body>
+    <!--
+    <div data-role="footer">
+      <h4>@baruchel</h4>
+      <tt>written by th. baruchel</tt>
+    </div>
+    -->
+
+    <div data-role="popup" id="waiting" class="ui-content"
+         data-theme="b" data-overlay-theme="b">
+        <p dir="rtl">در حال ساخت جدول جدید</p>
+    </div>
+
+    <div data-role="popup" id="newGrid" class="ui-content"
+         data-theme="b" data-overlay-theme="b">
+        <h2 dir="rtl">انتخاب سختی:</h2>
+        <ul>
+            <li onclick="newRandomGrid(72);">راحت</li>
+            <li onclick="newRandomGrid(96);">معمولی</li>
+            <li onclick="newRandomGrid(128);">سخت</li>
+            <li onclick="newRandomGrid(192);">وحشتناک</li>
+        </ul>
+    </div>
+
+    <div data-role="popup" id="restart" class="ui-content"
+         data-theme="b" data-overlay-theme="b">
+        <h2 dir="rtl">از اول شروع کنیم؟</h2>
+        <ul>
+            <li onclick='restart();$( "#restart" ).popup( "close" );'>اره</li>
+            <li id="cancel" onclick='$( "#restart" ).popup( "close" );'>بیخیال</li>
+        </ul>
+    </div>
+
+    <div data-role="popup" id="help" class="ui-content mahyar"
+         data-theme="b" data-overlay-theme="b">
+        <h2>راهنمایی</h2>
+        <div class="mahyar-title">
+            <p class="title">علامت های اصلی</p>
+        </div>
+        <ul>
+            <li class="ion-fork-repo" data-pack="default"></li>
+            <li class="help">درست کردن یه فرضیه</li>
+            <li class="ion-pull-request" data-pack="default"></li>
+            <li class="help">آزمایش فرضیه</li>
+            <li class="ion-android-close" data-pack="android"></li>
+            <li class="help" dir="rtl">بیخیال شدن فرضیه!</li>
+            <li class="ion-android-refresh" data-pack="android"></li>
+            <li class="help">همین جدول از اول</li>
+            <li class="ion-code-working" data-pack="default"></li>
+            <li class="help">یه جدول جدید</li>
+        </ul>
+        <div class="mahyar-title">
+            <p>ابزارهای اضافه</p>
+        </div>
+        <h3 id="check" class="helpButton" onclick='check();$( "#help" ).popup( "close" );'>جواب های غلط رو
+            نشون بده</h3>
+        <h3 id="solve" class="helpButton" onclick='solve();$( "#help" ).popup( "close" );' dir="rtl">این جدول رو برام حل
+            کن!</h3>
+    </div>
+
+</div>
+<!-- End of the page -->
+
+</body>
 </html>
